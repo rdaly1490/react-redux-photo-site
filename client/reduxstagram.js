@@ -4,7 +4,29 @@ import { render } from 'react-dom';
 // Import CSS
 import css from './styles/style.styl';
 
-render(<p>Hello World</p>, document.getElementById('root'));
+// Import Components
+import App from './components/App';
+import Single from './components/Single';
+import PhotoGrid from './components/PhotoGrid';
+
+// Import React-Router Dependencies
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { Provider } from 'react-redux';
+import store, { history } from './store';
+
+const router = (
+	// Provider exposes store to our application
+	<Provider store={store}>
+		<Router history={history}>
+			<Route path="/" component={App}>
+				<IndexRoute component={PhotoGrid}></IndexRoute>
+				<Route path="/view/:postId" component={Single}></Route>
+			</Route>
+		</Router>
+	</Provider>
+);
+
+render(router, document.getElementById('root'));
 
 
 
