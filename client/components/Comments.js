@@ -4,6 +4,7 @@ export default class Single extends React.Component {
 	constructor() {
 		super();
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.renderComment = this.renderComment.bind(this);
 	}
 
 	renderComment(comment, i) {
@@ -12,7 +13,10 @@ export default class Single extends React.Component {
 				<p>
 					<strong>{comment.user}</strong>
 					{comment.text}
-					<button className="remove-comment">&times;</button>
+					<button className="remove-comment"
+							onClick={this.props.removeComment.bind(null, this.props.params.postId, i)}>
+						&times;
+					</button>
 				</p>
 			</div>
 		);
